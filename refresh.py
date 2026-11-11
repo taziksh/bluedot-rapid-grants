@@ -214,7 +214,8 @@ def build_db(grants):
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    parser = argparse.ArgumentParser(
+        description="Refresh the BlueDot Rapid Grants dataset.")
     parser.add_argument("--db", action="store_true",
                         help="also rebuild grants.db")
     parser.add_argument("--db-only", action="store_true",
