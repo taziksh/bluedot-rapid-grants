@@ -1,6 +1,6 @@
 # bluedot-rapid-grants
 
-All public [BlueDot Rapid Grants](https://bluedot.org/grants/rapid). Auto-refreshed every Monday.
+All public [BlueDot Rapid Grants](https://bluedot.org/grants/rapid), updated weekly.
 
 ## Querying
 
@@ -36,9 +36,12 @@ SELECT * FROM grants WHERE first_seen >= '2026-12-01';
 
 `git log -p data/` shows what changed each week.
 
-## Refreshing
+## Updates
+
+A weekly cron job (GitHub Action, Mondays 7am PT) pulls the latest grants and commits any changes.
+
+To update now instead of waiting:
 
 ```sh
-gh workflow run refresh   # on GitHub
-python3 refresh.py --db   # or locally
+gh workflow run refresh
 ```
