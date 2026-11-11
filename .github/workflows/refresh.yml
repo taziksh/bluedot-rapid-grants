@@ -1,0 +1,29 @@
+name: refresh
+
+on:
+  schedule:
+    - cron: "0 15 * * 1"  # Mondays 15:00 UTC (7am PST / 8am PDT)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch and merge
+        id: refresh
+        run: echo "summary=$(python3 refresh.py)" >> "$GITHUB_OUTPUT"
+      - name: Commit if changed
+        run: |
+          git add data
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(data): refresh, ${{ steps.refresh.outputs.summary }}"
+          git push
