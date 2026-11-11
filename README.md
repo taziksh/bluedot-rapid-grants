@@ -2,7 +2,7 @@
 
 All public [BlueDot Rapid Grants](https://bluedot.org/grants/rapid). Auto-refreshed every Monday.
 
-## Use it
+## Querying
 
 ```sh
 git pull
@@ -23,7 +23,7 @@ SELECT amount_usd, grantee, title FROM grants ORDER BY amount_usd DESC LIMIT 20;
 SELECT * FROM grants WHERE first_seen >= '2026-12-01';
 ```
 
-## What's in it
+## Data
 
 `data/grants.jsonl`, one grant per line:
 
@@ -36,7 +36,7 @@ SELECT * FROM grants WHERE first_seen >= '2026-12-01';
 
 `git log -p data/` shows what changed each week.
 
-## Refresh now
+## Refreshing
 
 ```sh
 gh workflow run refresh   # on GitHub
